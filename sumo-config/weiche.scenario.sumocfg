@@ -1,0 +1,6 @@
+<configuration>
+	<input>
+		<net-file value="weiche.net.xml" />
+		<route-files value="weiche.routes.xml" />
+	</input>
+</configuration>

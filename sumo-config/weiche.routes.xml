@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+	<route edges="0014c-0 0014c-1 1555f-0" color="45,24,76" id="route_SA-SC">
+		<stop lane="1555f-0_0" duration="7200"/>
+	</route>
+	<route edges="0014c-0 0014c-1 5554c-0" color="51,7,213" id="route_SA-SB">
+		<stop lane="5554c-0_0" duration="7200"/>
+	</route>
+
+	<vType id="regio" accel="2.5" decel="1.3" length="20.00" vClass="rail" color="193,18,28" />
+
+	<vType id="ice" accel="5" decel="1.3" length="60.00" vClass="rail_electric" color="192,192,192" />
+
+	<vType id="cargo" accel="2.5" decel="1.3" length="80.00" vClass="rail" color="30,30,30" />
+
+</routes>

@@ -5,6 +5,7 @@ from yaramo.route import Route
 from yaramo.signal import SignalFunction, Signal, SignalDirection, SignalKind
 from railwayroutegenerator.routegenerator import RouteGenerator
 from sumoexporter import SUMOExporter
+from yaramo.operations import Split
 
 
 def create_geo_node(x, y):
@@ -54,35 +55,38 @@ def create_simple_weiche():
         distance_edge=1.0,
     )
     topology.add_signal(signal_a)
+    a2weiche.signals.append(signal_a)
 
     signal_b = Signal(
         name="sb",
         edge=weiche2b,
-        direction=SignalDirection.GEGEN,
+        direction=SignalDirection.IN,
         kind=SignalKind.Hauptsignal,
         function=SignalFunction.Block_Signal,
         distance_edge=1.0,
         additional_signals=[signal_a],
     )
     topology.add_signal(signal_b)
+    weiche2b.signals.append(signal_b)
 
     signal_c = Signal(
         name="sc",
         edge=weiche2c,
-        direction=SignalDirection.GEGEN,
+        direction=SignalDirection.IN,
         kind=SignalKind.Hauptsignal,
         function=SignalFunction.Block_Signal,
         distance_edge=1.0,
         additional_signals=[signal_a],
     )
     topology.add_signal(signal_c)
+    weiche2c.signals.append(signal_c)
 
     print(topology.nodes)
     print(topology.edges)
     print(topology.routes)
     print(topology.signals)
     RouteGenerator(topology).generate_routes()
-    print(topology.routes)
+    print("Routes", topology.routes)
 
     sumo_exporter = SUMOExporter(topology)
     sumo_exporter.convert()

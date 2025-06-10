@@ -1,0 +1,9 @@
+<nodes>
+<node id="2c928" x="0.0" y="0.0" type="priority"/>
+<node id="6114e" x="150.0" y="0.0" type="priority"/>
+<node id="37689" x="150.0" y="50.0" type="priority"/>
+<node id="23e29" x="50.0" y="0.0" type="priority"/>
+<node id="sa" x="1.0" y="0.0" type="rail_signal"/>
+<node id="sb" x="51.0" y="0.0" type="rail_signal"/>
+<node id="sc" x="50.707106781192124" y="0.7071067811921239" type="rail_signal"/>
+</nodes>

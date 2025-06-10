@@ -1,0 +1,20 @@
+<edges>
+<!-- Track d62d8c8f-fcf3-48ec-b161-37eadc20014c -->
+<edge id="0014c-0" from="2c928" to="sa" shape="0.0,0.0 1.0,0.0" priority="-1" numLanes="1" speed="110.0" allow="rail rail_electric" spreadType="center" />
+<edge id="0014c-0-re" from="sa" to="2c928" shape="1.0,0.0 0.0,0.0" priority="-1" numLanes="1" speed="110.0" allow="rail rail_electric" spreadType="center" />
+<!-- Track d62d8c8f-fcf3-48ec-b161-37eadc20014c -->
+<edge id="0014c-1" from="sa" to="23e29" shape="1.0,0.0 50.0,0.0" priority="-1" numLanes="1" speed="110.0" allow="rail rail_electric" spreadType="center" />
+<edge id="0014c-1-re" from="23e29" to="sa" shape="50.0,0.0 1.0,0.0" priority="-1" numLanes="1" speed="110.0" allow="rail rail_electric" spreadType="center" />
+<!-- Track 95b4454f-a2f1-4f95-b665-46da52f5554c -->
+<edge id="5554c-0" from="23e29" to="sb" shape="50.0,0.0 51.0,0.0" priority="-1" numLanes="1" speed="110.0" allow="rail rail_electric" spreadType="center" />
+<edge id="5554c-0-re" from="sb" to="23e29" shape="51.0,0.0 50.0,0.0" priority="-1" numLanes="1" speed="110.0" allow="rail rail_electric" spreadType="center" />
+<!-- Track 95b4454f-a2f1-4f95-b665-46da52f5554c -->
+<edge id="5554c-1" from="sb" to="6114e" shape="51.0,0.0 150.0,0.0" priority="-1" numLanes="1" speed="110.0" allow="rail rail_electric" spreadType="center" />
+<edge id="5554c-1-re" from="6114e" to="sb" shape="150.0,0.0 51.0,0.0" priority="-1" numLanes="1" speed="110.0" allow="rail rail_electric" spreadType="center" />
+<!-- Track 317694ad-5551-455c-926a-5e9fd331555f -->
+<edge id="1555f-0" from="23e29" to="sc" shape="50.0,0.0 50.707106781192124,0.7071067811921239" priority="-1" numLanes="1" speed="110.0" allow="rail rail_electric" spreadType="center" />
+<edge id="1555f-0-re" from="sc" to="23e29" shape="50.707106781192124,0.7071067811921239 50.0,0.0" priority="-1" numLanes="1" speed="110.0" allow="rail rail_electric" spreadType="center" />
+<!-- Track 317694ad-5551-455c-926a-5e9fd331555f -->
+<edge id="1555f-1" from="sc" to="37689" shape="50.707106781192124,0.7071067811921239 100.0,50.0 150.0,50.0" priority="-1" numLanes="1" speed="110.0" allow="rail rail_electric" spreadType="center" />
+<edge id="1555f-1-re" from="37689" to="sc" shape="150.0,50.0 100.0,50.0 50.707106781192124,0.7071067811921239" priority="-1" numLanes="1" speed="110.0" allow="rail rail_electric" spreadType="center" />
+</edges>
