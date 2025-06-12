@@ -1,21 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!-- generated on 2025-06-10 18:28:35 by Eclipse SUMO netedit Version 1.23.1
--->
-
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
-    <!-- VTypes -->
-    <vType id="cargo" length="80.00" vClass="rail" color="30,30,30" accel="2.5" decel="1.3"/>
-    <vType id="ice" length="60.00" vClass="rail_electric" color="192,192,192" accel="5" decel="1.3"/>
-    <vType id="regio" length="20.00" vClass="rail" color="193,18,28" accel="2.5" decel="1.3"/>
-    <!-- Routes -->
-    <route id="route_SA-SB" edges="c9fc0-0 c9fc0-1 4b51c-0" color="52,159,245">
-        <stop lane="4b51c-0_0" startPos="0.00" endPos="0.00" duration="20.00" friendlyPos="1"/>
-    </route>
-    <route id="route_SA-SC" edges="c9fc0-0 c9fc0-1 6ed5d-0" color="96,12,55">
-        <stop lane="6ed5d-0_0" startPos="0.00" endPos="0.00" duration="20.00" friendlyPos="1"/>
-    </route>
-    <!-- Vehicles, persons and containers (sorted by depart) -->
+	<route edges="8a320-0 8a320-1 32b1d-0" color="106,206,194" id="route_SA-SC">
+		<stop lane="32b1d-0_0" duration="7200"/>
+	</route>
+	<route edges="8a320-0 8a320-1 fa55f-0" color="99,237,120" id="route_SA-SB">
+		<stop lane="fa55f-0_0" duration="7200"/>
+	</route>
+
+	<vType id="regio" accel="2.5" decel="1.3" length="20.00" vClass="rail" color="193,18,28" />
+
+	<vType id="ice" accel="5" decel="1.3" length="60.00" vClass="rail_electric" color="192,192,192" />
+
+	<vType id="cargo" accel="2.5" decel="1.3" length="80.00" vClass="rail" color="30,30,30" />
+
     <flow id="f_0" type="cargo" begin="0.00" route="route_SA-SC" end="3600.00" vehsPerHour="18"/>
     <flow id="f_1" type="regio" begin="100.00" route="route_SA-SB" end="3600.00" vehsPerHour="18"/>
+
 </routes>
