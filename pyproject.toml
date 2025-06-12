@@ -12,6 +12,7 @@ dependencies = [
     "railway-route-generator",
     "ruff>=0.11.13",
     "sumoexporter",
+    "traci>=1.23.1",
     "yaramo",
 ]
 

@@ -82,6 +82,7 @@ dependencies = [
     { name = "railway-route-generator" },
     { name = "ruff" },
     { name = "sumoexporter" },
+    { name = "traci" },
     { name = "yaramo" },
 ]
 
@@ -94,6 +95,7 @@ requires-dist = [
     { name = "railway-route-generator", git = "https://github.com/simulate-digital-rail/railway-route-generator.git?rev=yaramo2" },
     { name = "ruff", specifier = ">=0.11.13" },
     { name = "sumoexporter", git = "https://github.com/simulate-digital-rail/sumo-exporter.git?rev=yaramo2" },
+    { name = "traci", specifier = ">=1.23.1" },
     { name = "yaramo", git = "https://github.com/simulate-digital-rail/yaramo.git?rev=yaramo2" },
 ]
 
@@ -619,6 +621,25 @@ version = "4.0"
 source = { git = "https://github.com/simulate-digital-rail/sumo-exporter.git?rev=yaramo2#a51081ea0bb5ec79f73da3e80467a3825a5ac69b" }
 dependencies = [
     { name = "yaramo" },
+]
+
+[[package]]
+name = "sumolib"
+version = "1.23.1"
+source = { registry = "https://pypi.org/simple" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/aa/50/3ee7a742e7e27b87f67cfd05519f9acc2e86182b6d385fc07c41005f39eb/sumolib-1.23.1-py3-none-any.whl", hash = "sha256:63589c41079dbdb1acb389478694f47302f4990e156c056ad686ba2d01efe7f0", size = 276981, upload-time = "2025-05-08T07:31:17.919Z" },
+]
+
+[[package]]
+name = "traci"
+version = "1.23.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "sumolib" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/bd/46/ac1c760c0ee183a316d3c1c33fb20c64b56621abafd00db99af48b96ee54/traci-1.23.1-py3-none-any.whl", hash = "sha256:79a62bdc67fb437d3bf08a730f3673bbe77435f0b36e0ff4b3111545a9d371bb", size = 277219, upload-time = "2025-05-08T07:31:35.278Z" },
 ]
 
 [[package]]
