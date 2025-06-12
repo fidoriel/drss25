@@ -3,6 +3,7 @@ import logging
 
 # copy of the train class from flexidug
 
+
 class Train(object):
     def __init__(self, train_id: str):
         self.train_id: str = train_id

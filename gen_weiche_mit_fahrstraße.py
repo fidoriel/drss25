@@ -43,6 +43,7 @@ def find_route_for_signals(routes: dict, start_signal: Signal, stop_signal: Sign
 def bootstrap_train(interlocking: Interlocking, train_id: Any, route: Route):
     if route.maximum_speed is None:
         raise ValueError("Route needs maximum_speed")
+
     asyncio.run(interlocking.set_route(yaramo_route=route, train_id=train_id))
     interlocking.print_state()
     # traci.vehicle.setSpeedMode(train_id, 32)
@@ -50,10 +51,12 @@ def bootstrap_train(interlocking: Interlocking, train_id: Any, route: Route):
     position = traci.vehicle.getRoadID(train_id)
     segment = interlocking.train_detection_controller.get_segment_by_segment_id(
         position
+    )  # get the current position of the train, needs first simulation tick, so train is placed
+    segment.used_by.add(train_id)  # tell the segment which train is on it
+    segment.state = OccupancyState.RESERVED  # reserve segment
+    interlocking.train_detection_controller.state[segment.segment_id] = (
+        1  # mark track as used in train detection controller
     )
-    segment.used_by.add(train_id)
-    segment.state = OccupancyState.RESERVED
-    interlocking.train_detection_controller.state[segment.segment_id] = 1
 
     return position
 
