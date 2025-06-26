@@ -1,7 +1,7 @@
 # drss25
 
 Install yaramo: `uv sync`
-Install sumo: `uv pip install eclipse-sumo`
+Install sumo: `uv pip install "eclipse-sumo=1.21.0"`
 Use sumo gui `sumo-gui`
 
 Command to run sumo with config file:
