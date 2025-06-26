@@ -69,7 +69,7 @@ class RestInfrastructureProvider(InfrastructureProvider):
     host = "http://127.0.0.1:5000"
     point: str
     client: httpx.AsyncClient
-    position: Literal["left", "right"] = "left"  # change me
+    position: Literal["left", "right"] = "right"  # change me
 
     def __init__(self, point, **kwargs):
         self.point = "point_id"
@@ -85,8 +85,10 @@ class RestInfrastructureProvider(InfrastructureProvider):
         #     return
         if (target_orientation == "left") and self.position == "right":
             await self.client.get(f"{self.host}/turn_left")
+            self.position = "left"
         elif (target_orientation == "right") and self.position == "left":
             await self.client.get(f"{self.host}/turn_right")
+            self.position = "right"
         return True
 
 
