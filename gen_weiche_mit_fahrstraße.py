@@ -65,14 +65,14 @@ def bootstrap_train(interlocking: Interlocking, train_id: Any, route: Route):
 import httpx
 
 
-class RestInfrastructureProvider(InfrastructureProvider):
+class RestInfrastructureProviderSwitch(InfrastructureProvider):
     host = "http://127.0.0.1:5000"
-    point: str
+    point_id: str
     client: httpx.AsyncClient
     position: Literal["left", "right"] = "right"  # change me
 
-    def __init__(self, point, **kwargs):
-        self.point = "point_id"
+    def __init__(self, point_id, **kwargs):
+        self.point_id = point_id
         self.client = httpx.AsyncClient()
         super().__init__(**kwargs)
 
@@ -81,14 +81,37 @@ class RestInfrastructureProvider(InfrastructureProvider):
 
     async def turn_point(self, yaramo_point, target_orientation: str):
         point_id = yaramo_point.uuid[-5:]
-        # if self.point != point_id:
-        #     return
+        if self.point_id != point_id:
+            return
         if (target_orientation == "left") and self.position == "right":
             await self.client.get(f"{self.host}/turn_left")
             self.position = "left"
         elif (target_orientation == "right") and self.position == "left":
             await self.client.get(f"{self.host}/turn_right")
             self.position = "right"
+        return True
+
+
+class RestInfrastructureProviderSignal(InfrastructureProvider):
+    host = "http://127.0.0.1:5000"
+    signal_id: str
+    client: httpx.AsyncClient
+    position: Literal["halt", "halt_erwarten", "fahrt"] = "halt"
+
+    def __init__(self, signal_id, **kwargs):
+        self.signal_id = signal_id
+        self.client = httpx.AsyncClient()
+        super().__init__(**kwargs)
+
+    async def set_signal_aspect(self, yaramo_signal, target_aspect):
+        if yaramo_signal == self.signal_id:
+            if target_aspect == "go":
+                await self.client.get(f"{self.host}/signal?aspect=green")
+            if target_aspect == "halt":
+                await self.client.get(f"{self.host}/signal?aspect=red")
+        return True
+
+    async def turn_point(self, yaramo_point, target_orientation: str):
         return True
 
 
@@ -158,12 +181,7 @@ def create_simple_weiche():
     weiche2c.signals.append(signal_c)
     topology.update_edge_lengths()
 
-    # print(topology.nodes)
-    # print(topology.edges)
-    # print(topology.routes)
-    # print(topology.signals)
     RouteGenerator(topology).generate_routes()
-    # print("Routes", topology.routes)
 
     sumo_exporter = SUMOExporter(topology)
     sumo_exporter.convert()
@@ -176,7 +194,8 @@ def create_simple_weiche():
         [
             SUMOInfrastructureProvider(traci_instance=traci),
             LoggingInfrastructureProvider(),
-            RestInfrastructureProvider(point="???"),
+            RestInfrastructureProviderSwitch(point_id=weiche.uuid[-5:]),
+            RestInfrastructureProviderSignal(signal_id="SA"),
         ]
     )
     interlocking.prepare(topology)
