@@ -104,12 +104,16 @@ class RestInfrastructureProviderSignal(InfrastructureProvider):
         super().__init__(**kwargs)
 
     async def set_signal_aspect(self, yaramo_signal, target_aspect):
-        if yaramo_signal == self.signal_id:
-            if target_aspect == "go":
+        if yaramo_signal.name == self.signal_id:
+            if target_aspect == "go" and self.position != "fahrt":
                 await self.client.get(f"{self.host}/signal?aspect=green")
-            if target_aspect == "halt":
+                self.position = "fahrt"
+                return True
+            if target_aspect == "halt" and self.position != "halt":
                 await self.client.get(f"{self.host}/signal?aspect=red")
-        return True
+                self.position = "halt"
+                return True
+        return False
 
     async def turn_point(self, yaramo_point, target_orientation: str):
         return True
@@ -194,8 +198,8 @@ def create_simple_weiche():
         [
             SUMOInfrastructureProvider(traci_instance=traci),
             LoggingInfrastructureProvider(),
-            RestInfrastructureProviderSwitch(point_id=weiche.uuid[-5:]),
-            RestInfrastructureProviderSignal(signal_id="SA"),
+            # RestInfrastructureProviderSwitch(point_id=weiche.uuid[-5:]),
+            RestInfrastructureProviderSignal(signal_id=signal_a.name),
         ]
     )
     interlocking.prepare(topology)
@@ -207,7 +211,6 @@ def create_simple_weiche():
     end = signal_c
 
     traci.vehicle.add(train_id, f"route_{begin.name}-{end.name}", "regio")
-    # train.stop_train()
 
     route = find_route_for_signals(topology.routes, begin, end)
     route.maximum_speed = 50
